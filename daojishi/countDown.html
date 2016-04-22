@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时 | xurna yang</title>
+
+	<style>
+		#div1{
+			margin: 10px;
+			font-size: 20px;
+			font-weight: bold;
+			font-family: "microsoft yahei";
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function  () { 
+			var curtime = new Date();  //当前时间
+			var endtime = new Date("2016,7,1");  //结束时间
+			var lefttime = Math.ceil((endtime.getTime()-curtime.getTime())/(24*60*60*1000));
+			//getTime()是毫秒
+			//1天= 24小时，1小时= 60分，1分 = 60秒，1秒 = 1000毫秒
+			document.getElementById("div1").innerHTML = lefttime;
+		}
+
+	</script>
+</head>
+<!-- xurna yang
+ 	2016.4.22
+  -->
+<body>
+	<p>距离放假还有<span  id="div1"></span>天</p>
+</body>
+</html>

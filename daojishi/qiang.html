@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>限时抢 | xurna yang</title>
+
+	<style>
+		.div{
+			margin: 10px;
+			font-size: 20px;
+			font-weight: bold;
+			font-family: "microsoft yahei";
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function  () { 
+			showTime();		
+
+		}
+
+		function showTime(){
+			var curtime = new Date();  //当前时间
+			var endtime = new Date("2016,7,1,15:44:12");  //结束时间
+			var lefttime = parseInt((endtime.getTime()-curtime.getTime())/1000);
+			//getTime()是毫秒
+			//1天= 24小时，1小时= 60分，1分 = 60秒，1秒 = 1000毫秒
+			var d = parseInt(lefttime/(24*60*60));
+			var h = parseInt(lefttime/(60*60)%24);
+			var m = parseInt(lefttime/60%60);
+			var s = parseInt(lefttime%60);
+			document.getElementById("div1").innerHTML = d + '天' + h +'小时' + m+'分'+ s + '秒';
+			if(lefttime<0){
+				document.getElementById("div1").innerHTML = "团购结束";
+			}else{
+				setTimeout(showTime,1000);
+			}
+		}
+
+	</script>
+</head>
+<!-- xurna yang
+ 	2016.4.22
+  -->
+<body>
+	<p>距离购物结束还有<span  id="div1" class="div"></span></p>
+</body>
+</html>
