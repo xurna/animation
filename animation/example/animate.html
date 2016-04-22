@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多物体运动  | xurna yang</title>
+	<style>
+		li{
+			width: 200px;
+			height: 200px;
+			background: lime;
+			margin: 40px;
+			list-style: none;
+			/*border: 2px solid #000;*/   /*加上这个会发现宽度会变大，这是因为用了offsetWidth*/
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function  () {
+			var aLi = document.getElementsByTagName("li");
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].timer = null;
+				aLi[i].onmouseover = function(){
+					startMove(this,400);
+				}
+				aLi[i].onmouseout  =function(){
+					startMove(this,200);
+				}
+			};
+		}
+
+		//var timer = null;
+		function startMove(obj,iTarget){
+			clearInterval(obj.timer); //保证多物体不去争同一个timer，在obj中加一个timer属性
+			obj.timer =  setInterval(function(){
+				var speed = (iTarget-obj.offsetWidth)/8; //计算出每隔一段时间移动的距离
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+				if(obj.offsetWidth == iTarget){
+					clearInterval(obj.timer); // 如果目标到达则关闭定时器
+				}
+				else{
+					obj.style.width = obj.offsetWidth+speed+"px";  //否则继续执行运动
+				}
+			},30);
+		}
+	</script>
+</head>
+<!-- xurna yang
+ 	2016.4.22
+  -->
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

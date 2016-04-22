@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多物体运动 | xurna yang</title>
+	<style>
+		li{
+			width: 200px;
+			height: 200px;
+			background: lime;
+			margin: 40px;
+			list-style: none;
+			filter:alpha(opacity:30);
+			opacity: 0.3;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function  () {
+			var aLi = document.getElementsByTagName("li");
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].timer = null;
+				aLi[i].alpha = 30;
+				aLi[i].onmouseover = function(){
+					startMove(this,100);
+				}
+				aLi[i].onmouseout  =function(){
+					startMove(this,30);
+				}
+			};
+		}
+
+		//var timer = null;   
+		// var alpha = 30;    //只要是多物体运动，所有东西都不能共用
+		function startMove(obj,iTarget){
+			clearInterval(obj.timer); //保证多物体不去争同一个timer，在obj中加一个timer属性
+			obj.timer =  setInterval(function(){
+				var speed = (iTarget-getStyle(obj,"opacity")*100)/8; //计算出每隔一段时间改变的值,8为分隔的段数，实际为速度
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+				if(obj.alpha == iTarget){
+					clearInterval(obj.timer);
+				}else{
+					obj.alpha+=speed;
+					obj.style.filter = 'alpha(opacity:'+obj.alpha+')';
+					obj.style.opacity = obj.alpha/100;
+				}
+
+				
+			},30);
+		}
+
+		//函数声明提升，实际上该函数在最顶部
+		//获取元素的属性值，不是内嵌式不能使用style直接获取
+		function getStyle(obj,attr){
+			//ie
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			//firefox
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+	</script>
+</head>
+<!-- xurna yang
+ 	2016.4.22
+  -->
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

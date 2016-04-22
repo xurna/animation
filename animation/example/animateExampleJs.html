@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js动画案例 | xurna yang</title>
+	<style>
+		#move{
+			width: 340px;
+			height: auto;
+			margin: 20px auto;
+			background: #eee;
+		}
+		#move a{
+			display: inline-block;
+			width: 72px;
+			height: 78px;
+			border: 1px solid #ddd;
+			border-radius: 3px;
+			background: #fff;
+			text-align: center;
+			margin:10px 17px;
+			position: relative;
+			padding-top: 40px;
+			color: #9c9c9c;
+			font-size: 12px;
+			text-decoration: none;
+			line-height: 25px;
+			overflow: hidden;
+		}
+		#move p{
+			padding-top:  40px;
+			font-family: 'microsoft yahei';
+		}
+		#move a i{
+			position: absolute;
+			top: 10px;
+			left: 0;
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+			filter:alpha(opacity=100);
+			opacity: 1;
+		}
+		#move a:hover{
+			color: #f00;
+		}
+		#move img{
+			border: none;
+		}
+	</style>
+	<script type="text/javascript" src="../js/move.js"></script>
+	<script type="text/javascript">
+		window.onload = function  () {
+			var oMove = document.getElementById("move");
+			var oList = oMove.getElementsByTagName("a");
+
+			for (var i = 0; i < oList.length; i++) {
+				
+				oList[i].onmouseover=  function(){
+					var _this = this.getElementsByTagName("i")[0];
+					startMove(_this,{top:-20,opacity:0},function(){ //往上走
+						_this.style.top = 30+'px';      //从下面开始
+						startMove(_this,{top:10,opacity:100});    //从下面回来
+					})
+				}
+			};
+		}
+
+	</script>
+</head>
+<!-- xurna yang
+ 	2016.4.22
+  -->
+<body>
+	<div id="move">
+		<a href="">
+			<i><img src="../images/p1.png" alt=""></i>
+			<p>图标</p>
+		</a>
+		<a href="">
+			<i><img src="../images/p2.png" alt=""></i>
+			<p>图标</p>
+		</a>
+		<a href="">
+			<i><img src="../images/p3.png" alt=""></i>
+			<p>图标</p>
+		</a>
+		<a href="">
+			<i><img src="../images/p4.png" alt=""></i>
+			<p>图标</p>
+		</a>
+		<a href="">
+			<i><img src="../images/p5.png" alt=""></i>
+			<p>图标</p>
+		</a>
+		<a href="">
+			<i><img src="../images/p6.png" alt=""></i>
+			<p>图标</p>
+		</a>
+	</div>
+</body>
+</html>

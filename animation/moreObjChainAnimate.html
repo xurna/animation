@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多物体链式运动 | xurna yang</title>
+
+	<style>
+		#div1{
+			width: 200px;
+			height: 200px;
+			background: lime;
+			margin: 40px;
+			list-style: none;
+			filter:alpha(opacity:30);
+			opacity: 0.3;
+		}
+	</style>
+	<script type="text/javascript" src="js/move.js"></script>
+	<script type="text/javascript">
+		window.onload = function  () {
+			var div = document.getElementById("div1");
+			div.timer = null;
+			div.onmouseover = function(){
+				startMove(div,{width:400,height:200,opacity:60},
+				function(){
+					startMove(div,{width:400,height:300,opacity:100});
+				});
+			}
+			div.onmouseout  =function(){
+				startMove(div,{width:400,height:200,opacity:100},
+				function(){
+					startMove(div,{width:200,width:200,opacity:60});
+				});	
+			}
+		}
+
+	</script>
+</head>
+<!-- xurna yang
+ 	2016.4.22
+  -->
+<body>
+	<div id="div1"></div>
+</body>
+</html>
