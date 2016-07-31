@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+    overflow: hidden;
+}
+.scrollContainer{
+    display: none;
+    transition: all ease 1s;
+    position: relative;
+    top: 0;
+}
+.slide1{
+    background-color: rgb(27, 188, 155);
+}
+.slide2{
+    background-color: rgb(255, 153, 0);
+}
+.slide3{
+    background-color: rgb(123, 170, 190);
+}
